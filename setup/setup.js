@@ -2,8 +2,25 @@ require("dotenv").config({ path: __dirname + "/../.variables.env" });
 const fs = require("fs");
 
 const mongoose = require("mongoose");
-mongoose.connect(process.env.DATABASE);
-mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.DATABASE, {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+      useUnifiedTopology: true
+    });
+
+    console.log('MongoDB Connected...');
+  } catch (err) {
+    console.error(err.message);
+    // Exit process with failure
+    process.exit(1);
+  }
+}
+
+connectDB()
 
 // import all of our models - they need to be imported only once
 
