@@ -2,40 +2,37 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 import { Layout, Menu } from "antd";
-import {
-  SettingOutlined,
-  UserOutlined,
-  CustomerServiceOutlined,
-  FileTextOutlined,
-  FileSyncOutlined,
-  DashboardOutlined,
-  TeamOutlined,
-} from "@ant-design/icons";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 function Navigation() {
-  const [collapsed, setCollapsed] = useState(false);
 
-  const onCollapse = () => {
-    setCollapsed(!collapsed);
-  };
   return (
     <>
       <Sider
-        collapsible
-        collapsed={collapsed}
-        onCollapse={onCollapse}
         style={{
           zIndex: 1000,
+          background: 'white',
+          width: '190px'
         }}
       >
-        <div className="logo" />
+        <div className="logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M15 15L11.2286 11.2286M11.2286 11.2286C12.3129 10.1443 12.9835 8.64635 12.9835 6.99177C12.9835 3.68261 10.3009 1 6.99177 1C3.68261 1 1 3.68261 1 6.99177C1 10.3009 3.68261 12.9835 6.99177 12.9835C8.64635 12.9835 10.1443 12.3129 11.2286 11.2286Z" stroke="black"/>
+          </svg>
+        </div>
         <br/><br/>
-        <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
+        <Menu 
+          defaultSelectedKeys={["1"]} 
+          mode="inline"
+          style={{
+            height: '100%',
+            borderRight: 0
+          }}
+        >
           <Menu.Item key="1">
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
           </Menu.Item>
           <Menu.Item key="2">
             <Link to="/reports">Reports</Link>

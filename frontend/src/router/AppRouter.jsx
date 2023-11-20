@@ -5,6 +5,10 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import PageLoader from "@/components/PageLoader";
 
+const Home = lazy(() => 
+  import(/*webpackChunkName: 'HomePage'*/ "@/pages/Home")
+);
+
 const Admin = lazy(() =>
   import(/*webpackChunkName:'AdminPage'*/ "@/pages/Admin")
 );
@@ -26,9 +30,11 @@ export default function AppRouter() {
     <Suspense fallback={<PageLoader />}>
       <AnimatePresence exitBeforeEnter initial={false}>
         <Switch location={location} key={location.pathname}>
-          <PrivateRoute component={Admin} path="/" exact />
-          <PrivateRoute component={Product} path="/product" exact />
-          <PrivateRoute component={Admin} path="/admin" exact />
+          <PrivateRoute component={Home} path="/" exact />
+          <PrivateRoute component={Product} path="/reports" exact />
+          <PrivateRoute component={Product} path="/apartments" exact />
+          <PrivateRoute component={Admin} path="/managers" exact />
+          <PrivateRoute component={Product} path="/reservations" exact />
 
           <PrivateRoute component={Logout} path="/logout" exact />
           <PublicRoute path="/login" render={() => <Redirect to="/" />} />
