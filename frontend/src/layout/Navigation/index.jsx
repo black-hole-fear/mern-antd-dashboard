@@ -32,33 +32,28 @@ function Navigation() {
         }}
       >
         <div className="logo" />
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
-          <Menu.Item key="1" icon={<DashboardOutlined />}>
-            <Link to="/" />
-            Home Page
+        <br/><br/>
+        <Menu theme="light" defaultSelectedKeys={["1"]} mode="inline">
+          <Menu.Item key="1">
+            <Link to="/home">Home</Link>
           </Menu.Item>
-          <Menu.Item key="2" icon={<CustomerServiceOutlined />}>
-            <Link to="/customer">Customer</Link>
+          <Menu.Item key="2">
+            <Link to="/reports">Reports</Link>
           </Menu.Item>
-          <Menu.Item key="24" icon={<UserOutlined />}>
-            <Link to="/selectcustomer">Custom Select Customer</Link>
+          <Menu.Item key="3">
+            <Link to="/apartments">Apartments</Link>
           </Menu.Item>
-          <Menu.Item key="21" icon={<FileTextOutlined />}>
-            <Link to="/lead" />
-            Lead
+          <Menu.Item key="4">
+            <Link to="/managers">Managers</Link>
           </Menu.Item>
-          <Menu.Item key="3" icon={<FileSyncOutlined />}>
-            <Link to="/product" />
-            Product
+          <Menu.Item key="31">
+            <Link to="/reservations" />
+            Reservations
           </Menu.Item>
-          <Menu.Item key="31" icon={<TeamOutlined />}>
-            <Link to="/admin" />
-            Admins Management
-          </Menu.Item>
-
-          <Menu.Item key="32" icon={<SettingOutlined />}>
-            <Link to="/settings" />
-            Settings
+          <Menu.Item></Menu.Item>
+          <Menu.Item key="41">
+            <Link to="edit-site" />
+            Edit the site
           </Menu.Item>
         </Menu>
       </Sider>

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
-    "antd": "^4.16.7",
+    "antd": "^4.24.14",
     "axios": "^0.21.1",
     "dayjs": "^1.10.4",
     "framer-motion": "^4.1.13",
