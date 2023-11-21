@@ -187,10 +187,74 @@
                 margin-top: 30px;
                 display: flex;
                 flex-flow: row-reverse;
+                
             }
             .ant-btn {
                 margin-right: 10px;
             }
+        }
+    }
+}
+
+.ant-btn-primary {
+    width: 80px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    background: #F0F0F0;
+    color: black;
+}
+.ant-btn-default {
+    width: 80px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    background: #CEE6FC;
+    color: black;
+}
+
+.ant-modal-wrap {
+    display: flex;
+    align-items: center;
+    .confirm-modal {
+        top: 0;
+
+        .ant-modal-confirm-btns {
+            display: flex;
+            flex-flow: row-reverse;
+            justify-content: center;
+            .ant-btn {
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+.message-span {
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; 
+
+    span {
+        color: #F98C8C;
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 130%;
+    }
+}
+.ant-message-success {
+    display: inline-flex;
+    text-align: left;
+    align-items: center;
+    span:first-child {
+        svg {
+            width: 25px;
+            height: 25px;
         }
     }
 }

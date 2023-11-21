@@ -13,7 +13,7 @@ import EditManagerDrawer from "@/components/Drawer/EditManagerDrawer";
 
 const { confirm } = Modal;
 
-export default function Admin() {
+export default function Apartment() {
   const [isClickAddBtn, setClickAddBtn] = useState(false)
   const [isClickEditBtn, setClickEditBtn] = useState(false)
 
