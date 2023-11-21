@@ -14,9 +14,9 @@ import { selectAuth } from "@/redux/auth/selectors";
 export default function Router() {
   const { isLoggedIn } = useSelector(selectAuth);
 
-  useEffect(() => {
-    console.log("isLoggedIn : ", isLoggedIn);
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   console.log("isLoggedIn : ", isLoggedIn);
+  // }, [isLoggedIn]);
 
   if (isLoggedIn === false)
     return (

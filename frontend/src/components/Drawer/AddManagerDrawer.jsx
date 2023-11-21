@@ -17,7 +17,7 @@ const AddManagerDrawer = (props) => {
   const success = () => {
     message.success({
       content: 'Менеджер добавлен',
-      duration: 30,
+      duration: 4,
       maxCount: 3,
       style: {
         position: 'fixed',

@@ -3,56 +3,76 @@ import {
   Table,
   Button,
   Select,
-  Dropdown
+  Dropdown,
+  Modal
 } from "antd";
 
 import AddManagerDrawer from "@/components/Drawer/AddManagerDrawer";
+import EditManagerDrawer from "@/components/Drawer/EditManagerDrawer";
 
-const items = [
-  {
-    key: '1',
-    label: (
-      <a 
-        rel="noopener noreferrer" 
-        href="#"
-        style={{
-          color: '#5780EB',
-          fontFamily: 'SF Pro Display',
-          fontSize: '15px',
-          fontStyle: 'normal',
-          fontWeight: 400,
-          lineHeight: '110%'
-        }}
-      >
-        Изменить
-      </a>
-    ),
-  },
-  {
-    key: '2',
-    label: (
-      <a 
-        rel="noopener noreferrer" 
-        href="#"
-        style={{
-          color: '#F98C8C',
-          fontFamily: 'SF Pro Display',
-          fontSize: '15px',
-          fontStyle: 'normal',
-          fontWeight: 400,
-          lineHeight: '110%'
-        }}
-      >
-        Удалить
-      </a>
-    )
-  }
-];
-
+const { confirm } = Modal;
 
 export default function Admin() {
-  const [isClickAddBtn, setClickAddBtn] = useState(false);
+  const [isClickAddBtn, setClickAddBtn] = useState(false)
+  const [isClickEditBtn, setClickEditBtn] = useState(false)
 
+  const showConfirm = () => {
+    confirm({
+      className: 'confirm-modal',
+      icon: <></>,
+      content: 'Вы действительно хотите удалить менеджера?',
+      onOk() {
+        console.log('OK');
+      },
+      onCancel() {
+        console.log('Cancel');
+      }
+    })
+  }
+
+  const items = [
+    {
+      key: '1',
+      label: (
+        <a 
+          rel="noopener noreferrer" 
+          href="#"
+          style={{
+            color: '#5780EB',
+            fontFamily: 'SF Pro Display',
+            fontSize: '15px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            lineHeight: '110%'
+          }}
+          onClick={()=>setClickEditBtn(true)}
+        >
+          Изменить
+        </a>
+      ),
+    },
+    {
+      key: '2',
+      label: (
+        <a 
+          rel="noopener noreferrer" 
+          href="#"
+          style={{
+            color: '#F98C8C',
+            fontFamily: 'SF Pro Display',
+            fontSize: '15px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            lineHeight: '110%'
+          }}
+          onClick={showConfirm}
+        >
+          Удалить
+        </a>
+      )
+    }
+  ]
+  
   const columns = [
     {
       title: 'ФИО',
@@ -98,7 +118,8 @@ export default function Admin() {
         </Dropdown>
       </>
     }
-  ];
+  ]
+  
   const data = [
     {
       key: '1',
@@ -180,6 +201,7 @@ export default function Admin() {
         onChange={onChange}
       />
       <AddManagerDrawer open={isClickAddBtn} onClose={() => setClickAddBtn(false)} />
+      <EditManagerDrawer open={isClickEditBtn} onClose={()=> setClickEditBtn(false)} />
     </>
   );
 }

@@ -15,7 +15,7 @@ const EditManagerDrawer = (props) => {
   const success = () => {
     message.success({
       content: 'Изменения сохранены',
-      duration: 30,
+      duration: 4,
       maxCount: 3,
       style: {
         position: 'fixed',
@@ -42,7 +42,6 @@ const EditManagerDrawer = (props) => {
 
   return (
     <>
-      {contextHolder}
       <Drawer
         title="Измененить данные менеджера"
         width={420}
@@ -67,6 +66,7 @@ const EditManagerDrawer = (props) => {
               <Form.Item
                 name="name"
                 label="ФИО менеджера"
+                initialValue="dsfsdfsdf"
                 rules={[
                   {
                     required: true,

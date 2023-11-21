@@ -32,7 +32,7 @@ export default function SidePanel({
       setStyleSider("0px");
       setOpacitySider(1);
     }, 300);
-  }, [isPanelCollapsed]);
+  }, []);
 
   const collapsePanel = () => {
     panel.collapse();
