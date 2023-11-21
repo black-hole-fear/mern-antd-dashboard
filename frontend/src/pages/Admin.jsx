@@ -1,94 +1,120 @@
-import React from "react";
+import React, { useState } from "react";
 import { 
   Table,
-  Space,
+  Button,
   Select
 } from "antd";
 
+import AddManagerDrawer from "@/components/Drawer/AddManagerDrawer";
+
 const columns = [
   {
-    title: 'Name',
+    title: 'ФИО',
     dataIndex: 'name',
+    width: '250px'
   },
   {
-    title: 'Chinese Score',
-    dataIndex: 'chinese',
-    sorter: {
-      compare: (a, b) => a.chinese - b.chinese,
-      multiple: 3,
-    },
+    title: 'Телефон',
+    dataIndex: 'telephone'
   },
   {
-    title: 'Math Score',
-    dataIndex: 'math',
-    sorter: {
-      compare: (a, b) => a.math - b.math,
-      multiple: 2,
-    },
+    title: 'Почта',
+    dataIndex: 'email'
   },
   {
-    title: 'English Score',
-    dataIndex: 'english',
+    title: 'Дата создания',
+    dataIndex: 'dateOfCreation',
     sorter: {
       compare: (a, b) => a.english - b.english,
-      multiple: 1,
-    },
+      multiple: 1
+    }
   },
+  {
+    title: 'Кол-во сделок',
+    dataIndex: 'numberOfTransactions'
+  },
+  {
+    width: '300px',
+    render: () => <></>
+  }
 ];
 const data = [
   {
     key: '1',
     name: 'John Brown',
-    chinese: 98,
-    math: 60,
-    english: 70,
+    telephone: 98,
+    email: 60,
+    dateOfCreation: 70,
+    numberOfTransactions: 20
   },
   {
     key: '2',
     name: 'Jim Green',
-    chinese: 98,
-    math: 66,
-    english: 89,
+    telephone: 98,
+    email: 66,
+    dateOfCreation: 89,
+    numberOfTransactions: 20
   },
   {
     key: '3',
     name: 'Joe Black',
-    chinese: 98,
-    math: 90,
-    english: 70,
+    telephone: 98,
+    email: 90,
+    dateOfCreation: 70,
+    numberOfTransactions: 20
   },
   {
     key: '4',
     name: 'Jim Red',
-    chinese: 88,
-    math: 99,
-    english: 89,
-  },
-];
+    telephone: 88,
+    email: 99,
+    dateOfCreation: 89,
+    numberOfTransactions: 20
+  }
+]
+
 const onChange = (pagination, filters, sorter, extra) => {
-  console.log('params', pagination, filters, sorter, extra);
-};
+  console.log('params', pagination, filters, sorter, extra)
+}
+
 
 export default function Admin() {
+  const [isClickAddBtn, setClickAddBtn] = useState(false);
+
   return (
     <>
-      <div class="page-title d-flex p-2 ps-4">
-        Manager
+      <div className="page-title d-flex p-2 ps-4">
+        Менеджеры
       </div>
-      <div class="page-sort-select d-flex mt-5 mb-5 ms-4">
-      <Select
-        defaultValue="Сортировка"
-        style={{
-          width: 120,
-        }}
-      />
+      <div className="page-sort-select d-flex justify-content-between mt-5 mb-5 ms-4">
+        <Select
+          defaultValue="Сортировка"
+          style={{
+            width: 120,
+          }}
+        />
+        <Button 
+          style={{
+            width: '127px',
+            height: '35px',
+            marginRight: '40px',
+            background: '#C2E3DB',
+            border: 'none'
+          }}
+          onClick={() => setClickAddBtn(true)}
+        >
+          Добавить
+        </Button>
       </div>
       <Table 
+        className="managers-table ps-5 pe-5"
+        rowClassName={() => "rowClassName1"}
         pagination={false}
         columns={columns} 
         dataSource={data} 
-        onChange={onChange} 
+        onChange={onChange}
       />
+      <AddManagerDrawer open={isClickAddBtn} onClose={() => setClickAddBtn(false)} />
     </>
   );
 }

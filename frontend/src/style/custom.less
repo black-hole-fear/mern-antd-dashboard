@@ -9,6 +9,16 @@
     stroke: #000;
 }
 
+.ant-menu-item {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: auto !important;
+    border-radius: 15px;
+    &:hover {
+        background: #E6F4FF;
+    }
+}
+
 .ant-menu-item-selected {
     background: #BFC4F6 !important;
     border-radius: 15px;
@@ -21,9 +31,8 @@
     }
 }
 
-.ant-menu-item:hover {
-    background: #E6F4FF;
-    border-radius: 15px;
+.ant-layout-sider {
+    box-shadow: -20px 0 33px 0 #555;
 }
 
 .page-title {
@@ -32,5 +41,103 @@
 }
 
 .page-sort-select .ant-select-selector {
-    border: none;
+    border: none !important;
+}
+
+.managers-table {
+    table {
+        border-spacing: 0 15px;
+        border-collapse: separate;
+    }
+    thead {
+        border-collapse: collapse;
+        tr {
+            height: 26px;
+        }
+    }
+    thead tr th {
+        padding-top: 0;
+        padding-bottom: 0;
+        background: white;
+        border-bottom: 1px solid #ECECEC;
+        border-top: 1px solid #ECECEC;
+        font-weight: bold;
+        font-size: 15px;
+        color: #001737;
+        &:before {
+            display: none;
+        }
+    }
+    thead tr th:first-child {
+        border-left: 1px solid #ECECEC;
+        border-top-left-radius: 7px !important;
+        border-bottom-left-radius: 7px !important;
+    }
+    thead tr th:last-child {
+        border-right: 1px solid #ECECEC;
+        border-top-right-radius: 7px !important;
+        border-bottom-right-radius: 7px !important;
+    }
+
+    tbody {
+        border-collapse: separate;
+        border-spacing: 0 15px;
+        td {
+            border-top: 1px solid #ECECEC;
+            font-size: 15px;
+            height: 45px;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        td:first-child {
+            border-left: 1px solid #ECECEC;
+            border-top-left-radius: 7px !important;
+            border-bottom-left-radius: 7px !important;
+        }
+        td:last-child {
+            border-right: 1px solid #ECECEC;
+            border-top-right-radius: 7px !important;
+            border-bottom-right-radius: 7px !important;
+        }
+    }
+}
+
+.site-form-in-drawer-wrapper {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    padding: 10px 16px;
+    text-align: right;
+    background: #fff;
+    border-top: 1px solid #e9e9e9;
+}
+
+.ant-drawer-header {
+    background-color: #F4FAFF;
+    .ant-drawer-close {
+        position: absolute;
+        right: 0;
+    }
+}
+.ant-form {
+    display: flex;
+    justify-content: center;
+    .ant-form-item {
+        .ant-form-item-control-input-content {
+            display: flex;
+            justify-content: center;
+        }
+    
+        .ant-input {
+            border-radius: 4px;
+            height: 40px;
+            width: 360px;
+        }
+    }
+    
+    .form-button-group {
+        position: absolute;
+        bottom: 50px;
+    }
 }
