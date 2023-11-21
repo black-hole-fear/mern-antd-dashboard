@@ -9,14 +9,12 @@ import {
   message
 } from 'antd';
 
-const AddManagerDrawer = (props) => {
+const EditManagerDrawer = (props) => {
   const {open, onClose} = props;
-
-  const [messageApi, contextHolder] = message.useMessage();
   
   const success = () => {
     message.success({
-      content: 'Менеджер добавлен',
+      content: 'Изменения сохранены',
       duration: 30,
       maxCount: 3,
       style: {
@@ -36,7 +34,7 @@ const AddManagerDrawer = (props) => {
 
   const [form] = Form.useForm()
 
-  const onAddManager = (values) => {
+  const onEditManager = (values) => {
     onClose(false)
     success()
     console.log(values)
@@ -46,7 +44,7 @@ const AddManagerDrawer = (props) => {
     <>
       {contextHolder}
       <Drawer
-        title="Добавить менеджера"
+        title="Измененить данные менеджера"
         width={420}
         onClose={onClose}
         open={open}
@@ -61,7 +59,7 @@ const AddManagerDrawer = (props) => {
         <Form 
           layout="vertical" 
           form={form}
-          onFinish={onAddManager}
+          onFinish={onEditManager}
           hideRequiredMark
         >
           <Row gutter={16}>
@@ -107,20 +105,6 @@ const AddManagerDrawer = (props) => {
                 <Input placeholder="Please enter email address" />
               </Form.Item>
             </Col>
-            <Col span={24}>
-              <Form.Item
-                name="password"
-                label="Временный пароль"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please enter password'
-                  }
-                ]}
-              >
-                <Input placeholder="Please enter password" />
-              </Form.Item>
-            </Col>
           </Row>
 
           <div className="form-button-group">
@@ -155,4 +139,4 @@ const AddManagerDrawer = (props) => {
     </>
   );
 };
-export default AddManagerDrawer;
+export default EditManagerDrawer;

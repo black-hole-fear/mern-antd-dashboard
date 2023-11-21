@@ -112,8 +112,7 @@ const LoginPage = () => {
         </Row>
 
         <Footer style={{ textAlign: "center" }}>
-          Open Source CRM based on AntD & React ©2020 Created by Salah Eddine
-          Lalami
+          Open Source CRM based on AntD & React ©2023.11 Created by Lucas
         </Footer>
       </Layout>
     </>
