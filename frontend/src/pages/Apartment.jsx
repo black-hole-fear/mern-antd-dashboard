@@ -8,8 +8,7 @@ import {
   message
 } from "antd";
 
-import AddManagerDrawer from "@/components/Drawer/AddManagerDrawer";
-import EditManagerDrawer from "@/components/Drawer/EditManagerDrawer";
+import EditApartment from "@/components/Drawer/EditApartment";
 
 const { confirm } = Modal;
 
@@ -106,40 +105,69 @@ export default function Apartment() {
   
   const columns = [
     {
-      title: 'ФИО',
-      dataIndex: 'name',
-      width: '250px'
+      title: 'квартиры',
+      dataIndex: 'apartment',
+      sorter: true
     },
     {
-      title: 'Телефон',
-      dataIndex: 'telephone'
+      title: 'Объект',
+      dataIndex: 'object'
     },
     {
-      title: 'Почта',
-      dataIndex: 'email'
+      title: 'Этаж',
+      dataIndex: 'floor',
+      sorter: true
     },
     {
-      title: 'Дата создания',
-      dataIndex: 'dateOfCreation',
-      sorter: {
-        compare: (a, b) => a.english - b.english,
-        multiple: 1
-      }
+      title: 'КВ',
+      dataIndex: 'KV',
+      sorter: true
     },
     {
-      title: 'Кол-во сделок',
-      dataIndex: 'numberOfTransactions'
+      title: 'Дата',
+      dataIndex: 'date',
+      sorter: true
     },
     {
-      width: '300px',
+      title: 'Статус',
+      dataIndex: 'status_tag'
+    },
+    {
+      title: 'Цена',
+      dataIndex: 'price',
+      sorter: true
+    },
+    {
+      title: 'Клиент',
+      dataIndex: 'customer'
+    },
+    {
+      title: 'Статус',
+      dataIndex: 'status'
+    },
+    {
       render: (_) => 
       <>
+        <a 
+          style={{
+            color: '#5780EB',
+            fontFamily: 'SF Pro Display',
+            fontSize: '12px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            lineHeight: '110%',
+            marginRight: '10px'
+          }}
+        >
+          Изменить
+        </a>
         <Dropdown
           key={_.key}
           menu={{
             items,
           }}
           placement="bottomRight"
+          trigger={['click']}
         >
           <svg width="30" height="13" viewBox="0 0 3 13" fill="none">
             <circle opacity="0.5" cx="1.5" cy="1.5" r="1.5" fill="black"/>
@@ -154,35 +182,15 @@ export default function Apartment() {
   const data = [
     {
       key: '1',
-      name: 'John Brown',
-      telephone: 98,
-      email: 60,
-      dateOfCreation: 70,
-      numberOfTransactions: 20
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      telephone: 98,
-      email: 66,
-      dateOfCreation: 89,
-      numberOfTransactions: 20
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      telephone: 98,
-      email: 90,
-      dateOfCreation: 70,
-      numberOfTransactions: 20
-    },
-    {
-      key: '4',
-      name: 'Jim Red',
-      telephone: 88,
-      email: 99,
-      dateOfCreation: 89,
-      numberOfTransactions: 20
+      apartment: '№132',
+      object: 'Prime city',
+      floor: 4,
+      KV: '144,5',
+      date: '14.09.2023',
+      status_tag: 2,
+      price: '2 000 000 c',
+      customer: '-',
+      status: 'Бронь до 12.05.23 14:00'
     }
   ]
   
@@ -231,8 +239,7 @@ export default function Apartment() {
         dataSource={data} 
         onChange={onChange}
       />
-      <AddManagerDrawer open={isClickAddBtn} onClose={() => setClickAddBtn(false)} />
-      <EditManagerDrawer open={isClickEditBtn} onClose={()=> setClickEditBtn(false)} />
+      <EditApartment open={isClickEditBtn} onClose={()=> setClickEditBtn(false)} />
     </>
   );
 }
