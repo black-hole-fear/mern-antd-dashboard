@@ -112,8 +112,9 @@ const EditApartment = (props) => {
                 name="status_tag"
                 label="Статус"
                 className="status-tag"
+                initialValue="reservation"
               >
-                <Radio.Group defaultValue="reservation" buttonStyle="solid">
+                <Radio.Group buttonStyle="solid">
                   <Radio.Button value="reservation">Бронь</Radio.Button>
                   <Radio.Button value="purchased">Куплено</Radio.Button>
                   <Radio.Button value="barter">Бартер</Radio.Button>
