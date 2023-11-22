@@ -17,7 +17,7 @@ const EditApartment = (props) => {
     message.success({
       className: 'apartment-edit-success',
       content: 'Изменения сохранены',
-      duration: 400,
+      duration: 3,
       maxCount: 3,
       style: {
         position: 'fixed',
