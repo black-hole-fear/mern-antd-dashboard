@@ -2,6 +2,10 @@ import React from "react";
 
 export default function Report() {
   return (
-    <>Report Page</>
+    <div className="container">
+      <h1>
+        Reports
+      </h1>
+    </div>
   );
 }

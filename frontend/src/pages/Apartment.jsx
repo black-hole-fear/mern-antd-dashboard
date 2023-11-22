@@ -70,6 +70,18 @@ export default function Apartment() {
       price: '2 000 000 c',
       customer: '-',
       status: 'Бронь до 12.05.23 14:00'
+    },
+    {
+      key: '2',
+      apartment: '№132',
+      object: 'Prime city',
+      floor: 4,
+      KV: '144,5',
+      date: '14.09.2023',
+      status_tag: 'reservation',
+      price: '2 000 000 c',
+      customer: '-',
+      status: 'Бронь до 12.05.23 14:00'
     }
   ]
 
