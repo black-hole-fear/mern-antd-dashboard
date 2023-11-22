@@ -5,7 +5,8 @@ import {
   Select,
   Dropdown,
   Modal,
-  message
+  message,
+  Tabs
 } from "antd";
 
 import EditApartment from "@/components/Drawer/EditApartment";
@@ -13,10 +14,7 @@ import EditApartment from "@/components/Drawer/EditApartment";
 const { confirm } = Modal;
 
 export default function Apartment() {
-  const [isClickAddBtn, setClickAddBtn] = useState(false)
   const [isClickEditBtn, setClickEditBtn] = useState(false)
-
-  const [isEdit, setIsEdit] = useState(null)
 
   const showResultMessage = (isEdit) => {
     if (isEdit) {
@@ -30,10 +28,10 @@ export default function Apartment() {
           top: '30px'
         }
       })
-    } else {
+    } else {  //This is for deleting apartment item in the table, but it was not used here
       message.success({
         content: <span className="message-span">Менеджер Султан Султанов Б.<br/><span>удален</span></span>,
-        duration: 334,
+        duration: 3,
         maxCount: 3,
         style: {
           position: 'fixed',
@@ -65,8 +63,7 @@ export default function Apartment() {
       key: '1',
       label: (
         <a 
-          rel="noopener noreferrer" 
-          href="#"
+          rel="noopener noreferrer"
           style={{
             color: '#5780EB',
             fontFamily: 'SF Pro Display',
@@ -85,8 +82,7 @@ export default function Apartment() {
       key: '2',
       label: (
         <a 
-          rel="noopener noreferrer" 
-          href="#"
+          rel="noopener noreferrer"
           style={{
             color: '#F98C8C',
             fontFamily: 'SF Pro Display',
@@ -210,12 +206,15 @@ export default function Apartment() {
           marginTop: '60px'
         }}
       >
-        <Select
-          defaultValue="Сортировка"
-          style={{
-            width: 120,
-          }}
-        />
+        <div>
+          <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+          <Select
+            defaultValue="Сортировка"
+            style={{
+              width: 120,
+            }}
+          />
+        </div>
         <Button 
           className="add-button"
           style={{
@@ -233,7 +232,6 @@ export default function Apartment() {
       </div>
       <Table 
         className="managers-table ps-5 pe-5"
-        rowClassName={() => "rowClassName1"}
         pagination={false}
         columns={columns} 
         dataSource={data} 
