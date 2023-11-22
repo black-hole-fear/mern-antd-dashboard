@@ -1,0 +1,2 @@
+(this["webpackJsonpantd-demo"]=this["webpackJsonpantd-demo"]||[]).push([[8],{361:function(t,n,e){"use strict";e.r(n),e.d(n,"default",(function(){return a}));e(0);var r=e(6);function a(){return Object(r.jsx)(r.Fragment,{children:"Report Page"})}}}]);
+//# sourceMappingURL=Report.58dc2fa8.chunk.js.map

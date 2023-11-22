@@ -78,7 +78,6 @@ export default function Apartment() {
       key: '1',
       label: (
         <a 
-          rel="noopener noreferrer"
           style={{
             color: '#5780EB',
             fontFamily: 'SF Pro Display',
@@ -97,10 +96,8 @@ export default function Apartment() {
       key: '2',
       label: (
         <a 
-          rel="noopener noreferrer"
           style={{
             color: '#F98C8C',
-            fontFamily: 'SF Pro Display',
             fontSize: '15px',
             fontStyle: 'normal',
             fontWeight: 400,
@@ -200,7 +197,6 @@ export default function Apartment() {
         <a 
           style={{
             color: '#5780EB',
-            fontFamily: 'SF Pro Display',
             fontSize: '12px',
             fontStyle: 'normal',
             fontWeight: 400,

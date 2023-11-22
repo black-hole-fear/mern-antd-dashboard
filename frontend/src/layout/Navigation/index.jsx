@@ -35,20 +35,26 @@ function Navigation() {
           <Menu.Item key="/home">
             <Link to="/">Home</Link>
           </Menu.Item>
+
           <Menu.Item key="/reports">
             <Link to="/reports">Reports</Link>
           </Menu.Item>
+
           <Menu.Item key="/apartments">
             <Link to="/apartments">Apartments</Link>
           </Menu.Item>
+
           <Menu.Item key="/managers">
             <Link to="/managers">Managers</Link>
           </Menu.Item>
+
           <Menu.Item key="/reservations">
             <Link to="/reservations" />
             Reservations
           </Menu.Item>
-          <Menu.Item></Menu.Item>
+
+          <Menu.Item key="hr133"><hr /></Menu.Item>
+          
           <Menu.Item key="/edit-site">
             <Link to="edit-site" />
             Edit the site

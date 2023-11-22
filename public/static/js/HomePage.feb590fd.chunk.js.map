@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/Home.jsx"],"names":["Home","_jsx","_Fragment","children"],"mappings":"8GAAA,+DAEe,SAASA,IACtB,OACEC,cAAAC,WAAA,CAAAC,SAAE,QAEN,C","file":"static/js/HomePage.feb590fd.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nexport default function Home() {\r\n  return (\r\n    <>Home</>\r\n  );\r\n}\r\n"],"sourceRoot":""}

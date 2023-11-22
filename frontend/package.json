@@ -40,6 +40,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@craco/craco": "^6.1.2",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "craco-alias": "^3.0.1",
