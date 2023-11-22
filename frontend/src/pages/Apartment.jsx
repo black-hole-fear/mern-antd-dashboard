@@ -13,14 +13,14 @@ import EditApartment from "@/components/Drawer/EditApartment";
 
 const { confirm } = Modal;
 
-export default function Apartment() {
+export default function Apartment({isLoading}) {
   const [isClickEditBtn, setClickEditBtn] = useState(false)
 
   const showResultMessage = (isEdit) => {
     if (isEdit) {
       message.success({
         content: 'Менеджер Султан Султанов Б.',
-        duration: 34,
+        duration: 3,
         maxCount: 3,
         style: {
           position: 'fixed',
@@ -57,6 +57,21 @@ export default function Apartment() {
       cancelText: 'Нет'
     })
   }
+
+  const tableData = [
+    {
+      key: '1',
+      apartment: '№132',
+      object: 'Prime city',
+      floor: 4,
+      KV: '144,5',
+      date: '14.09.2023',
+      status_tag: 2,
+      price: '2 000 000 c',
+      customer: '-',
+      status: 'Бронь до 12.05.23 14:00'
+    }
+  ]
 
   const items = [
     {
@@ -98,8 +113,31 @@ export default function Apartment() {
       )
     }
   ]
+
+  const tabItems = [
+    {
+      key: '1',
+      label: 'Bce',
+      children: <></>
+    }, 
+    {
+      key: '2',
+      label: 'Prime City',
+      children: <></>
+    },
+    {
+      key: '3',
+      label: 'Kochmon City',
+      children: <></>
+    },
+    {
+      key: '4',
+      label: 'Baytik',
+      children: <></>
+    }
+  ]
   
-  const columns = [
+  const tableColumns = [
     {
       title: 'квартиры',
       dataIndex: 'apartment',
@@ -175,21 +213,6 @@ export default function Apartment() {
     }
   ]
   
-  const data = [
-    {
-      key: '1',
-      apartment: '№132',
-      object: 'Prime city',
-      floor: 4,
-      KV: '144,5',
-      date: '14.09.2023',
-      status_tag: 2,
-      price: '2 000 000 c',
-      customer: '-',
-      status: 'Бронь до 12.05.23 14:00'
-    }
-  ]
-  
   const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra)
   }
@@ -207,7 +230,7 @@ export default function Apartment() {
         }}
       >
         <div>
-          <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+          <Tabs defaultActiveKey="1" items={tabItems} onChange={onChange} />
           <Select
             defaultValue="Сортировка"
             style={{
@@ -233,8 +256,8 @@ export default function Apartment() {
       <Table 
         className="managers-table ps-5 pe-5"
         pagination={false}
-        columns={columns} 
-        dataSource={data} 
+        columns={tableColumns} 
+        dataSource={tableData} 
         onChange={onChange}
       />
       <EditApartment open={isClickEditBtn} onClose={()=> setClickEditBtn(false)} />
