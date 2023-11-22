@@ -13,7 +13,7 @@ import EditApartment from "@/components/Drawer/EditApartment";
 
 const { confirm } = Modal;
 
-export default function Apartment({isLoading}) {
+export default function Apartment() {
   const [isClickEditBtn, setClickEditBtn] = useState(false)
 
   const showResultMessage = (isEdit) => {
@@ -66,7 +66,7 @@ export default function Apartment({isLoading}) {
       floor: 4,
       KV: '144,5',
       date: '14.09.2023',
-      status_tag: 2,
+      status_tag: 'active',
       price: '2 000 000 c',
       customer: '-',
       status: 'Бронь до 12.05.23 14:00'
@@ -164,7 +164,22 @@ export default function Apartment({isLoading}) {
     },
     {
       title: 'Статус',
-      dataIndex: 'status_tag'
+      dataIndex: 'status_tag',
+      render: (_) => 
+      <div className="status-mark">
+      {
+        _ == 'reservation' ? 
+          <span style={{ background:'#FCEDCE' }}>
+            Бронь
+          </span> : _ == 'active' ? 
+            <span style={{ background:'#CEDEFC' }}>
+              Активна
+            </span> : 
+            <span style={{ background:'#D4FCCE' }}>
+              {_.status_tag}
+            </span>
+      }
+      </div>
     },
     {
       title: 'Цена',
@@ -195,10 +210,11 @@ export default function Apartment({isLoading}) {
         >
           Изменить
         </a>
+
         <Dropdown
           key={_.key}
           menu={{
-            items,
+            items
           }}
           placement="bottomRight"
           trigger={['click']}
@@ -216,6 +232,10 @@ export default function Apartment({isLoading}) {
   const onChange = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra)
   }
+
+  const onChangeTab = (key) => {
+    console.log(key)
+  }
   
   return (
     <>
@@ -230,7 +250,7 @@ export default function Apartment({isLoading}) {
         }}
       >
         <div>
-          <Tabs defaultActiveKey="1" items={tabItems} onChange={onChange} />
+          <Tabs defaultActiveKey="1" items={tabItems} onChange={onChangeTab} />
           <Select
             defaultValue="Сортировка"
             style={{

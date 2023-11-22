@@ -137,7 +137,7 @@ export default function Admin() {
         <Dropdown
           key={_.key}
           menu={{
-            items,
+            items
           }}
           placement="bottomRight"
         >

@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Layout, Menu } from "antd";
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
 function Navigation() {
-
+  const location = useLocation();
+  
   return (
     <>
       <Sider
@@ -24,31 +25,31 @@ function Navigation() {
         </div>
         <br/><br/>
         <Menu 
-          defaultSelectedKeys={["1"]} 
+          defaultSelectedKeys={[location.pathname]} 
           mode="inline"
           style={{
             height: '100%',
             borderRight: 0
           }}
         >
-          <Menu.Item key="1">
+          <Menu.Item key="/home">
             <Link to="/">Home</Link>
           </Menu.Item>
-          <Menu.Item key="2">
+          <Menu.Item key="/reports">
             <Link to="/reports">Reports</Link>
           </Menu.Item>
-          <Menu.Item key="3">
+          <Menu.Item key="/apartments">
             <Link to="/apartments">Apartments</Link>
           </Menu.Item>
-          <Menu.Item key="4">
+          <Menu.Item key="/managers">
             <Link to="/managers">Managers</Link>
           </Menu.Item>
-          <Menu.Item key="31">
+          <Menu.Item key="/reservations">
             <Link to="/reservations" />
             Reservations
           </Menu.Item>
           <Menu.Item></Menu.Item>
-          <Menu.Item key="41">
+          <Menu.Item key="/edit-site">
             <Link to="edit-site" />
             Edit the site
           </Menu.Item>
