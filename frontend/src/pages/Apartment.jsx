@@ -15,6 +15,7 @@ const { confirm } = Modal;
 
 export default function Apartment() {
   const [isClickEditBtn, setClickEditBtn] = useState(false)
+  const [isClickAddBtn, setClickAddBtn] = useState(false)
 
   const showResultMessage = (isEdit) => {
     if (isEdit) {

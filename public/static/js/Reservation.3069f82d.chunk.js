@@ -1,2 +1,0 @@
-(this["webpackJsonpantd-demo"]=this["webpackJsonpantd-demo"]||[]).push([[9],{360:function(t,e,n){"use strict";n.r(e);n(0);var s=n(6);e.default=function(){return Object(s.jsx)(s.Fragment,{children:"Reservation"})}}}]);
-//# sourceMappingURL=Reservation.3069f82d.chunk.js.map

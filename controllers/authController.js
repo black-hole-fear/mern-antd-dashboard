@@ -40,19 +40,20 @@ exports.register = async (req, res) => {
       surname,
     });
     const savedAdmin = await newAdmin.save();
-    res.status(200).send({
+    
+    return res.status(200).send({
       success: true,
       admin: {
         id: savedAdmin._id,
         name: savedAdmin.name,
-        surname: savedAdmin.surname,
-      },
+        surname: savedAdmin.surname
+      }
     });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       result: null,
-      message: err.message,
+      message: err.message
     });
   }
 };
@@ -60,18 +61,17 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     // validate
     if (!email || !password)
       return res.status(400).json({ msg: "Not all fields have been entered." });
 
     const admin = await Admin.findOne({ email: email });
-    // console.log(admin);
+
     if (!admin)
       return res.status(400).json({
         success: false,
         result: null,
-        message: "No account with this email has been registered.",
+        message: "No account with this email has been registered."
       });
 
     const isMatch = await bcrypt.compare(password, admin.password);
@@ -79,13 +79,13 @@ exports.login = async (req, res) => {
       return res.status(400).json({
         success: false,
         result: null,
-        message: "Invalid credentials.",
+        message: "Invalid credentials."
       });
 
     const token = jwt.sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24,
-        id: admin._id,
+        id: admin._id
       },
       process.env.JWT_SECRET
     );
@@ -94,11 +94,11 @@ exports.login = async (req, res) => {
       { _id: admin._id },
       { isLoggedIn: true },
       {
-        new: true,
+        new: true
       }
     ).exec();
 
-    res.json({
+    return res.json({
       success: true,
       result: {
         token,
@@ -106,9 +106,9 @@ exports.login = async (req, res) => {
           id: result._id,
           name: result.name,
           isLoggedIn: result.isLoggedIn,
-        },
+        }
       },
-      message: "Successfully login admin",
+      message: "Successfully login admin"
     });
   } catch (err) {
     // res.status(500).json({ success: false, result:null, message: err.message });
@@ -160,7 +160,7 @@ exports.isValidToken = async (req, res, next) => {
       next();
     }
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
       result: null,
       message: err.message,
@@ -178,5 +178,5 @@ exports.logout = async (req, res) => {
     }
   ).exec();
 
-  res.status(200).json({ isLoggedIn: result.isLoggedIn });
+  return res.status(200).json({ isLoggedIn: result.isLoggedIn });
 };

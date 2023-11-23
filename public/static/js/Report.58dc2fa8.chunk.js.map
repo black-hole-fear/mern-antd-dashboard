@@ -1,1 +1,0 @@
-{"version":3,"sources":["pages/Report.jsx"],"names":["Report","_jsx","_Fragment","children"],"mappings":"8GAAA,+DAEe,SAASA,IACtB,OACEC,cAAAC,WAAA,CAAAC,SAAE,eAEN,C","file":"static/js/Report.58dc2fa8.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nexport default function Report() {\r\n  return (\r\n    <>Report Page</>\r\n  );\r\n}\r\n"],"sourceRoot":""}

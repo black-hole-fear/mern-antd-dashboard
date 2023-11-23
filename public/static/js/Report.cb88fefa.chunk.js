@@ -1,0 +1,2 @@
+(this["webpackJsonpantd-demo"]=this["webpackJsonpantd-demo"]||[]).push([[8],{361:function(n,t,e){"use strict";e.r(t),e.d(t,"default",(function(){return s}));e(0);var c=e(6);function s(){return Object(c.jsx)("div",{className:"container",children:Object(c.jsx)("h1",{children:"Reports"})})}}}]);
+//# sourceMappingURL=Report.cb88fefa.chunk.js.map
