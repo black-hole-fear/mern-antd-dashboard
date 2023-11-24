@@ -17,17 +17,21 @@ const adminSchema = new Schema({
     unique: true,
     lowercase: true,
     trim: true,
-    required: true,
+    required: true
   },
   password: {
     type: String,
-    required: true,
+    required: true
   },
   name: { type: String, required: true },
   surname: { type: String, required: true },
   photo: {
     type: String,
-    trim: true,
+    trim: true
+  },
+  number: {
+    type: String,
+    required: true
   },
   createdAt: {
     type: Date,

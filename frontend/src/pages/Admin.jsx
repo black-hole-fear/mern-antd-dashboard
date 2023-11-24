@@ -17,8 +17,6 @@ export default function Admin() {
   const [isClickAddBtn, setClickAddBtn] = useState(false)
   const [isClickEditBtn, setClickEditBtn] = useState(false)
 
-  const [isEdit, setIsEdit] = useState(null)
-
   const showResultMessage = (isEdit) => {
     if (isEdit) {
       message.success({

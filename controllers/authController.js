@@ -129,14 +129,21 @@ exports.isValidToken = async (req, res, next) => {
         jwtExpired: true,
       });
 
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
-    if (!verified)
-      return res.status(401).json({
-        success: false,
-        result: null,
-        message: "Token verification failed, authorization denied.",
-        jwtExpired: true,
-      });
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+      if (err) {
+        console.log(err)
+        return res.status(403).send("Could not verify token")
+      }
+      req.user = user;
+      console.log(req.user, user)
+    });
+    // if (!verified)
+    //   return res.status(401).json({
+    //     success: false,
+    //     result: null,
+    //     message: "Token verification failed, authorization denied.",
+    //     jwtExpired: true,
+    //   });
 
     const admin = await Admin.findOne({ _id: verified.id });
     if (!admin)
@@ -146,7 +153,7 @@ exports.isValidToken = async (req, res, next) => {
         message: "Admin doens't Exist, authorization denied.",
         jwtExpired: true,
       });
-
+      
     if (admin.isLoggedIn === false)
       return res.status(401).json({
         success: false,
@@ -156,7 +163,6 @@ exports.isValidToken = async (req, res, next) => {
       });
     else {
       req.admin = admin;
-      // console.log(req.admin);
       next();
     }
   } catch (err) {

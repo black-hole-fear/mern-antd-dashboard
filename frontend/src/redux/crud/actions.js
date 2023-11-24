@@ -78,6 +78,8 @@ export const crud = {
         type: actionTypes.CURRENT_ITEM,
         payload: data.result,
       });
+      console.log("sdfoidsjf");
+      return new Promise(true);
     } else {
       dispatch({
         type: actionTypes.REQUEST_FAILED,

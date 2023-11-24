@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   Button, 
   Col, 
@@ -8,12 +8,15 @@ import {
   Row ,
   message
 } from 'antd';
+import { useDispatch } from 'react-redux';
+
+import { crud } from '@/redux/crud/actions';
 
 const AddManagerDrawer = (props) => {
   const {open, onClose} = props;
 
-  const [messageApi, contextHolder] = message.useMessage();
-  
+  const dispatch = useDispatch();
+
   const success = () => {
     message.success({
       content: 'Менеджер добавлен',
@@ -37,6 +40,7 @@ const AddManagerDrawer = (props) => {
   const [form] = Form.useForm()
 
   const onAddManager = (values) => {
+    dispatch(crud.create('admin', values));
     onClose(false)
     success()
     console.log(values)
@@ -44,7 +48,6 @@ const AddManagerDrawer = (props) => {
 
   return (
     <>
-      {contextHolder}
       <Drawer
         title="Добавить менеджера"
         width={420}
