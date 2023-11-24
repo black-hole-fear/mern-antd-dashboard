@@ -5,21 +5,19 @@ import errorHandler from "./errorHandler";
 import successHandler from "./successHandler";
 
 const headersInstance = { [ACCESS_TOKEN_NAME]: tokenCookies.get() };
-
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
   timeout: 30000,
   headers: {
-    ...headersInstance,
-  },
+    ...headersInstance
+  }
 });
 
 const request = {
   create: async (entity, jsonData) => {
     axiosInstance.defaults.headers = {
-      ...headersInstance,
+      ...headersInstance
     };
-    console.log("jsonData", jsonData);
     try {
       const response = await axiosInstance.post(entity + "/create", jsonData);
       return successHandler(response);
@@ -29,7 +27,7 @@ const request = {
   },
   read: async (entity, id) => {
     axiosInstance.defaults.headers = {
-      ...headersInstance,
+      ...headersInstance
     };
     try {
       const response = await axiosInstance.get(entity + "/read/" + id);
@@ -87,7 +85,7 @@ const request = {
     };
     try {
       let query = "";
-      if (option !== {}) {
+      if (option.length !== 0) {
         let fields = option.fields ? "fields=" + option.fields : "";
         let question = option.question ? "&q=" + option.question : "";
         query = `?${fields}${question}`;
@@ -110,7 +108,7 @@ const request = {
     console.log(tokenCookies.get());
     try {
       let query = "";
-      if (option !== {}) {
+      if (option.length !== 0) {
         let page = option.page ? "page=" + option.page : "";
         let items = option.items ? "&items=" + option.items : "";
         query = `?${page}${items}`;

@@ -4,34 +4,34 @@ import { request } from "@/request";
 export const crud = {
   resetState: () => async (dispatch) => {
     dispatch({
-      type: actionTypes.RESET_STATE,
+      type: actionTypes.RESET_STATE
     });
   },
   resetAction: (actionType) => async (dispatch) => {
     dispatch({
       type: actionTypes.RESET_ACTION,
       keyState: actionType,
-      payload: null,
+      payload: null
     });
   },
   currentItem: (data) => async (dispatch) => {
     dispatch({
       type: actionTypes.CURRENT_ITEM,
-      payload: { ...data },
+      payload: { ...data }
     });
   },
   currentAction: (actionType, data) => async (dispatch) => {
     dispatch({
       type: actionTypes.CURRENT_ACTION,
       keyState: actionType,
-      payload: { ...data },
+      payload: { ...data }
     });
   },
   list: (entity, currentPage = 1) => async (dispatch) => {
     dispatch({
       type: actionTypes.REQUEST_LOADING,
       keyState: "list",
-      payload: null,
+      payload: null
     });
 
     let data = await request.list(entity, { page: currentPage });
@@ -42,19 +42,19 @@ export const crud = {
         pagination: {
           current: parseInt(data.pagination.page, 10),
           pageSize: 10,
-          total: parseInt(data.pagination.count, 10),
+          total: parseInt(data.pagination.count, 10)
         },
       };
       dispatch({
         type: actionTypes.REQUEST_SUCCESS,
         keyState: "list",
-        payload: result,
+        payload: result
       });
     } else {
       dispatch({
         type: actionTypes.REQUEST_FAILED,
         keyState: "list",
-        payload: null,
+        payload: null
       });
     }
   },
@@ -62,7 +62,7 @@ export const crud = {
     dispatch({
       type: actionTypes.REQUEST_LOADING,
       keyState: "create",
-      payload: null,
+      payload: null
     });
     console.log("jsonData action redux", jsonData);
     let data = await request.create(entity, jsonData);
@@ -71,20 +71,18 @@ export const crud = {
       dispatch({
         type: actionTypes.REQUEST_SUCCESS,
         keyState: "create",
-        payload: data.result,
+        payload: data.result
       });
 
       dispatch({
         type: actionTypes.CURRENT_ITEM,
         payload: data.result,
       });
-      console.log("sdfoidsjf");
-      return new Promise(true);
     } else {
       dispatch({
         type: actionTypes.REQUEST_FAILED,
         keyState: "create",
-        payload: null,
+        payload: null
       });
     }
   },
@@ -92,7 +90,7 @@ export const crud = {
     dispatch({
       type: actionTypes.REQUEST_LOADING,
       keyState: "read",
-      payload: null,
+      payload: null
     });
 
     let data = await request.read(entity, itemId);
@@ -138,7 +136,7 @@ export const crud = {
       dispatch({
         type: actionTypes.REQUEST_FAILED,
         keyState: "update",
-        payload: null,
+        payload: null
       });
     }
   },
@@ -147,7 +145,7 @@ export const crud = {
     dispatch({
       type: actionTypes.REQUEST_LOADING,
       keyState: "delete",
-      payload: null,
+      payload: null
     });
 
     let data = await request.delete(entity, itemId);
@@ -156,13 +154,13 @@ export const crud = {
       dispatch({
         type: actionTypes.REQUEST_SUCCESS,
         keyState: "delete",
-        payload: data.result,
+        payload: data.result
       });
     } else {
       dispatch({
         type: actionTypes.REQUEST_FAILED,
         keyState: "delete",
-        payload: null,
+        payload: null
       });
     }
   },
@@ -171,7 +169,7 @@ export const crud = {
     dispatch({
       type: actionTypes.REQUEST_LOADING,
       keyState: "search",
-      payload: null,
+      payload: null
     });
 
     source.cancel();
@@ -183,14 +181,14 @@ export const crud = {
       dispatch({
         type: actionTypes.REQUEST_SUCCESS,
         keyState: "search",
-        payload: data.result,
+        payload: data.result
       });
     } else {
       dispatch({
         type: actionTypes.REQUEST_FAILED,
         keyState: "search",
-        payload: null,
+        payload: null
       });
     }
-  },
+  }
 };

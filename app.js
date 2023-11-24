@@ -9,6 +9,7 @@ const apiRouter = require("./routes/api");
 const authApiRouter = require("./routes/authApi");
 
 const errorHandlers = require("./handlers/errorHandlers");
+const cors = require('cors');
 
 const { isValidToken } = require("./controllers/authController");
 
@@ -20,6 +21,8 @@ const app = express();
 // serves up static files from the public folder. Anything in public/ will just be served up as the file it is
 app.use(express.static(path.join(__dirname, "public")));
 
+// Prevent cors-error
+app.use(cors());
 // Takes the raw requests and turns them into usable properties on req.body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
