@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { 
   Button, 
   Col, 
@@ -9,9 +9,12 @@ import {
   message
 } from 'antd';
 
+import { crud } from '@/redux/crud/actions';
+import { useDispatch } from 'react-redux';
+
 const EditManagerDrawer = (props) => {
   const {open, onClose, initFormData} = props;
-
+  const dispatch = useDispatch();
 
   const success = () => {
     message.success({
@@ -25,12 +28,6 @@ const EditManagerDrawer = (props) => {
       }
     })
   }
-  // const error = () => {
-  //   messageApi.open({
-  //     type: 'error',
-  //     content: 'This is an error message'
-  //   })
-  // }
 
   const [form] = Form.useForm();
 
@@ -38,9 +35,9 @@ const EditManagerDrawer = (props) => {
     if (open) form.resetFields();
   }, [open]);
 
-
   const onEditManager = (values) => {
-    onClose(false)
+    dispatch(crud.update('admin', initFormData._id, values))
+    onClose(false);
     success()
   }
 

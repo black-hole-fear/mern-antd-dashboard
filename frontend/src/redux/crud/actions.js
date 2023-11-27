@@ -158,6 +158,10 @@ export const crud = {
         type: actionTypes.CURRENT_ITEM,
         payload: data.result,
       });
+
+      return new Promise((resolve, reject) => {
+        resolve(true);
+      })
     } else {
       dispatch({
         type: actionTypes.REQUEST_FAILED,
