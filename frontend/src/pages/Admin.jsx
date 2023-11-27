@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { 
   Table,
   Button,
@@ -6,16 +7,38 @@ import {
   Dropdown,
   Modal,
   message
-} from "antd";
+} from "antd"
 
-import AddManagerDrawer from "@/components/Drawer/AddManagerDrawer";
-import EditManagerDrawer from "@/components/Drawer/EditManagerDrawer";
+import AddManagerDrawer from "@/components/Drawer/AddManagerDrawer"
+import EditManagerDrawer from "@/components/Drawer/EditManagerDrawer"
+
+import { crud } from "@/redux/crud/actions"
+import { selectAllList, selectDeletedItem, selectItemById, selectReadItem } from "@/redux/crud/selectors"
 
 const { confirm } = Modal;
 
 export default function Admin() {
+  const self = this
+  const dispatch = useDispatch()
+  
   const [isClickAddBtn, setClickAddBtn] = useState(false)
   const [isClickEditBtn, setClickEditBtn] = useState(false)
+  const [editFormData, setEditFormData] = useState([])
+
+  useEffect(() => {
+    dispatch(crud.allList('admin'))
+  }, [])
+  
+  const { result } = useSelector(selectAllList)
+
+  let tableItems = result.map(item => ({
+      key     :  item._id,
+      name    :  item.name,
+      number  :  item.number,
+      email   :  item.email,
+      dateOfCreation  :  item.createdAt,
+      numberOfTransactions: item.numberOfTransactions
+  }))
 
   const showResultMessage = (isEdit) => {
     if (isEdit) {
@@ -74,7 +97,6 @@ export default function Admin() {
             fontWeight: 400,
             lineHeight: '110%'
           }}
-          onClick={()=>setClickEditBtn(true)}
         >
           Изменить
         </a>
@@ -94,7 +116,6 @@ export default function Admin() {
             fontWeight: 400,
             lineHeight: '110%'
           }}
-          onClick={showConfirm}
         >
           Удалить
         </a>
@@ -105,12 +126,11 @@ export default function Admin() {
   const columns = [
     {
       title: 'ФИО',
-      dataIndex: 'name',
-      width: '250px'
+      dataIndex: 'name'
     },
     {
       title: 'Телефон',
-      dataIndex: 'telephone'
+      dataIndex: 'number'
     },
     {
       title: 'Почта',
@@ -126,7 +146,8 @@ export default function Admin() {
     },
     {
       title: 'Кол-во сделок',
-      dataIndex: 'numberOfTransactions'
+      dataIndex: 'numberOfTransactions',
+      width: '120px'
     },
     {
       width: '300px',
@@ -135,8 +156,19 @@ export default function Admin() {
         <Dropdown
           key={_.key}
           menu={{
-            items
+            items,
+            onClick: ({ key }) => {
+              if (key === '1') {
+                dispatch(crud.read('admin', _.key)).then(res => {
+                  setEditFormData(res)
+                  setClickEditBtn(true)
+                })
+              } else if (key === '2') {
+                
+              }
+            }
           }}
+          trigger={['click']}
           placement="bottomRight"
         >
           <svg width="30" height="13" viewBox="0 0 3 13" fill="none">
@@ -149,42 +181,7 @@ export default function Admin() {
     }
   ]
   
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      telephone: 98,
-      email: 60,
-      dateOfCreation: 70,
-      numberOfTransactions: 20
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      telephone: 98,
-      email: 66,
-      dateOfCreation: 89,
-      numberOfTransactions: 20
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      telephone: 98,
-      email: 90,
-      dateOfCreation: 70,
-      numberOfTransactions: 20
-    },
-    {
-      key: '4',
-      name: 'Jim Red',
-      telephone: 88,
-      email: 99,
-      dateOfCreation: 89,
-      numberOfTransactions: 20
-    }
-  ]
-  
-  const onChange = (pagination, filters, sorter, extra) => {
+  const onChangeTable = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra)
   }
   
@@ -226,11 +223,11 @@ export default function Admin() {
         rowClassName={() => "rowClassName1"}
         pagination={false}
         columns={columns} 
-        dataSource={data} 
-        onChange={onChange}
+        dataSource={tableItems} 
+        onChange={onChangeTable}
       />
       <AddManagerDrawer open={isClickAddBtn} onClose={() => setClickAddBtn(false)} />
-      <EditManagerDrawer open={isClickEditBtn} onClose={()=> setClickEditBtn(false)} />
+      <EditManagerDrawer open={isClickEditBtn} onClose={()=> setClickEditBtn(false)} initFormData={editFormData} />
     </>
-  );
+  )
 }

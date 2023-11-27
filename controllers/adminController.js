@@ -103,7 +103,7 @@ exports.read = async (req, res) => {
         enabled: tmpResult.enabled,
         email: tmpResult.email,
         name: tmpResult.name,
-        surname: tmpResult.surname,
+        number: tmpResult.number
       };
 
       return res.status(200).json({

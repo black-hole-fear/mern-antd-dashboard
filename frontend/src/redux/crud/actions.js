@@ -58,13 +58,26 @@ export const crud = {
       });
     }
   },
-  listTable: (entity, jsonData) => async (dispatch) => {
+  allList: (entity, jsonData) => async (dispatch) => {
     dispatch({
       type: actionTypes.REQUEST_LOADING,
-      keyState: "list",
+      keyState: "all_list",
       payload: null
     });
-    const data = await request.listTable(entity);
+    const data = await request.allList(entity);
+    if (data.success === true) {
+      dispatch({
+        type: actionTypes.REQUEST_SUCCESS,
+        keyState: "all_list",
+        payload: data.result
+      });
+    } else {
+      dispatch({
+        type: actionTypes.REQUEST_FAILED,
+        keyState: "all_list",
+        payload: null
+      });
+    }
   },
   create: (entity, jsonData) => async (dispatch) => {
     dispatch({
@@ -113,12 +126,17 @@ export const crud = {
         keyState: "read",
         payload: data.result,
       });
+
+      return new Promise((resolve, reject) => {
+        resolve(data.result)
+      });
     } else {
       dispatch({
         type: actionTypes.REQUEST_FAILED,
         keyState: "read",
         payload: null,
       });
+
     }
   },
   update: (entity, itemId, jsonData) => async (dispatch) => {

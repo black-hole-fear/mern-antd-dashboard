@@ -11,6 +11,11 @@ const INITIAL_STATE = {
   current: {
     result: null,
   },
+  all_list: {
+    result: [],
+    isLoading: false,
+    isSuccess: false,
+  },
   list: {
     result: {
       items: [],
@@ -27,7 +32,7 @@ const INITIAL_STATE = {
   update: INITIAL_KEY_STATE,
   delete: INITIAL_KEY_STATE,
   read: INITIAL_KEY_STATE,
-  search: { ...INITIAL_KEY_STATE, result: [] },
+  search: { ...INITIAL_KEY_STATE, result: [] }
 };
 
 const crudReducer = (state = INITIAL_STATE, action) => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect} from 'react';
 import { 
   Button, 
   Col, 
@@ -10,8 +10,9 @@ import {
 } from 'antd';
 
 const EditManagerDrawer = (props) => {
-  const {open, onClose} = props;
-  
+  const {open, onClose, initFormData} = props;
+
+
   const success = () => {
     message.success({
       content: 'Изменения сохранены',
@@ -24,7 +25,6 @@ const EditManagerDrawer = (props) => {
       }
     })
   }
-
   // const error = () => {
   //   messageApi.open({
   //     type: 'error',
@@ -32,12 +32,16 @@ const EditManagerDrawer = (props) => {
   //   })
   // }
 
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    if (open) form.resetFields();
+  }, [open]);
+
 
   const onEditManager = (values) => {
     onClose(false)
     success()
-    console.log(values)
   }
 
   return (
@@ -59,6 +63,7 @@ const EditManagerDrawer = (props) => {
           layout="vertical" 
           form={form}
           onFinish={onEditManager}
+          initialValues={initFormData}
           hideRequiredMark
         >
           <Row gutter={16}>
@@ -66,7 +71,6 @@ const EditManagerDrawer = (props) => {
               <Form.Item
                 name="name"
                 label="ФИО менеджера"
-                initialValue="dsfsdfsdf"
                 rules={[
                   {
                     required: true,
@@ -139,4 +143,5 @@ const EditManagerDrawer = (props) => {
     </>
   );
 };
+
 export default EditManagerDrawer;

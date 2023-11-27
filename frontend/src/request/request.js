@@ -102,11 +102,22 @@ const request = {
     }
   },
 
+  allList: async (entity) => {
+    axiosInstance.defaults.headers = {
+      [ACCESS_TOKEN_NAME]: tokenCookies.get()
+    };
+    try {
+      const response = await axiosInstance.get(entity + "/all-list");
+      return successHandler(response);
+    } catch (error) {
+      return errorHandler(error);
+    }
+  },
+
   list: async (entity, option = {}) => {
     axiosInstance.defaults.headers = {
       [ACCESS_TOKEN_NAME]: tokenCookies.get(),
     };
-    console.log(tokenCookies.get());
     try {
       let query = "";
       if (option.length !== 0) {

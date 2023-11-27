@@ -17,6 +17,7 @@ router.route("/admin/update/:id").patch(catchErrors(adminController.update));
 router.route("/admin/delete/:id").delete(catchErrors(adminController.delete));
 router.route("/admin/search").get(catchErrors(adminController.search));
 router.route("/admin/list").get(catchErrors(adminController.list));
+router.route("/admin/all-list").get(catchErrors(adminController.list));
 
 router
   .route("/admin/password-update/:id")

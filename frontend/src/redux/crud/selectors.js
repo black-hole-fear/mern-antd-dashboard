@@ -7,6 +7,11 @@ export const selectCurrentItem = createSelector(
   (crud) => crud.current
 );
 
+export const selectAllList = createSelector(
+  [selectCrud],
+  (crud) => crud.all_list
+);
+
 export const selectListItems = createSelector(
   [selectCrud],
   (crud) => crud.list

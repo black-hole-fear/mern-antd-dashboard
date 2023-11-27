@@ -34,6 +34,10 @@ const adminSchema = new Schema({
     type: String,
     required: true
   },
+  numberOfTransactions: {
+    type: Number,
+    default: 0
+  },
   createdAt: {
     type: Date,
     default: Date.now,
