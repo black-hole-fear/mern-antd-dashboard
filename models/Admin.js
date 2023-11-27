@@ -24,10 +24,11 @@ const adminSchema = new Schema({
     required: true
   },
   name: { type: String, required: true },
-  surname: { type: String, required: true },
+  surname: { type: String },
   photo: {
     type: String,
-    trim: true
+    trim: true,
+    default: null
   },
   number: {
     type: String,
@@ -39,7 +40,8 @@ const adminSchema = new Schema({
   },
   isLoggedIn: {
     type: Boolean,
-  },
+    default: false
+  }
 });
 
 // generating a hash

@@ -5,6 +5,7 @@ import errorHandler from "./errorHandler";
 import successHandler from "./successHandler";
 
 const headersInstance = { [ACCESS_TOKEN_NAME]: tokenCookies.get() };
+
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
   timeout: 30000,

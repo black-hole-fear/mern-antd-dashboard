@@ -18,7 +18,7 @@ const INITIAL_STATE = {
         current: 1,
         pageSize: 10,
         total: 1,
-      },
+      }
     },
     isLoading: false,
     isSuccess: false,

@@ -43,8 +43,8 @@ export const crud = {
           current: parseInt(data.pagination.page, 10),
           pageSize: 10,
           total: parseInt(data.pagination.count, 10)
-        },
-      };
+        }
+      }
       dispatch({
         type: actionTypes.REQUEST_SUCCESS,
         keyState: "list",
@@ -57,6 +57,14 @@ export const crud = {
         payload: null
       });
     }
+  },
+  listTable: (entity, jsonData) => async (dispatch) => {
+    dispatch({
+      type: actionTypes.REQUEST_LOADING,
+      keyState: "list",
+      payload: null
+    });
+    const data = await request.listTable(entity);
   },
   create: (entity, jsonData) => async (dispatch) => {
     dispatch({

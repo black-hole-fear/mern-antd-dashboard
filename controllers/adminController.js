@@ -130,7 +130,7 @@ exports.read = async (req, res) => {
 
 exports.create = async (req, res) => {
   try {
-    let { email, password } = req.body;
+    let { name, email, number, password } = req.body;
     if (!email || !password)
       return res.status(400).json({
         success: false,
@@ -139,7 +139,6 @@ exports.create = async (req, res) => {
       });
 
     const existingAdmin = await Admin.findOne({ email: email });
-
     if (existingAdmin)
       return res.status(400).json({
         success: false,
@@ -157,7 +156,6 @@ exports.create = async (req, res) => {
     var newAdmin = new Admin();
     const passwordHash = newAdmin.generateHash(password);
     req.body.password = passwordHash;
-
     const result = await new Admin(req.body).save();
     if (!result) {
       return res.status(403).json({

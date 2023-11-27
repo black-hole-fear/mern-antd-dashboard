@@ -26,7 +26,7 @@
 // }
 
 export function setCookie(cookieName, cookieValue) {
-  window.localStorage.setItem(cookieName, JSON.stringify(cookieValue));
+  window.localStorage.setItem(cookieName, cookieValue);
 }
 export function getCookie(cookieName) {
   const result = window.localStorage.getItem(cookieName);

@@ -97,7 +97,6 @@ exports.login = async (req, res) => {
         new: true
       }
     ).exec();
-
     return res.json({
       success: true,
       result: {
@@ -129,14 +128,7 @@ exports.isValidToken = async (req, res, next) => {
         jwtExpired: true,
       });
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-      if (err) {
-        console.log(err)
-        return res.status(403).send("Could not verify token")
-      }
-      req.user = user;
-      console.log(req.user, user)
-    });
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
     // if (!verified)
     //   return res.status(401).json({
     //     success: false,

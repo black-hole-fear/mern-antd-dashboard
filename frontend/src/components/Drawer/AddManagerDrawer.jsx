@@ -43,7 +43,6 @@ const AddManagerDrawer = (props) => {
     dispatch(crud.create('admin', values));
     onClose(false)
     success()
-    console.log(values)
   }
 
   return (
