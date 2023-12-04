@@ -13,38 +13,28 @@ import AddManagerDrawer from "@/components/Drawer/AddManagerDrawer"
 import EditManagerDrawer from "@/components/Drawer/EditManagerDrawer"
 
 import { crud } from "@/redux/crud/actions"
-import { selectAllList, selectDeletedItem, selectItemById, selectReadItem } from "@/redux/crud/selectors"
+import { selectAllList } from "@/redux/crud/selectors"
 
 const { confirm } = Modal;
 
 export default function Admin() {
-  const self = this
   const dispatch = useDispatch()
   
   const [isClickAddBtn, setClickAddBtn] = useState(false)
   const [isClickEditBtn, setClickEditBtn] = useState(false)
-  const [editFormData, setEditFormData] = useState([])
 
+  const [tableData, setTableData] = useState(null)
+  const [editFormData, setEditFormData] = useState([])
+  
   useEffect(() => {
-    dispatch(crud.allList('admin'))
+    reloadTable()
   }, [])
   
-  const { result } = useSelector(selectAllList)
-
-  let tableItems = result.map(item => ({
-      key     :  item._id,
-      name    :  item.name,
-      number  :  item.number,
-      email   :  item.email,
-      dateOfCreation  :  item.createdAt,
-      numberOfTransactions: item.numberOfTransactions
-  }))
-
   const showResultMessage = (isEdit) => {
     if (isEdit) {
       message.success({
         content: 'Менеджер Султан Султанов Б.',
-        duration: 34,
+        duration: 2,
         maxCount: 3,
         style: {
           position: 'fixed',
@@ -54,8 +44,12 @@ export default function Admin() {
       })
     } else {
       message.success({
-        content: <span className="message-span">Менеджер Султан Султанов Б.<br/><span>удален</span></span>,
-        duration: 334,
+        content: 
+          <span className="message-span">
+            Менеджер Султан Султанов Б.<br/>
+            <span>удален</span>
+          </span>,
+        duration: 2,
         maxCount: 3,
         style: {
           position: 'fixed',
@@ -66,13 +60,34 @@ export default function Admin() {
     }
   }
 
-  const showConfirm = () => {
+  const reloadTable = () => {
+    dispatch(crud.allList('admin')).then(data => {
+      const tableItems = data.map(item => ({
+          key     :  item._id,
+          name    :  item.name,
+          number  :  item.number,
+          email   :  item.email,
+          dateOfCreation  :  item.createdAt,
+          numberOfTransactions: item.numberOfTransactions
+      }))
+
+      setTableData(tableItems)
+    })
+  }
+
+  const showConfirm = (key) => {
     confirm({
       className: 'confirm-modal',
       icon: <></>,
       content: 'Вы действительно хотите удалить менеджера?',
       onOk() {
-        showResultMessage(false);
+        dispatch(crud.delete('admin', key)).then(success => {
+          if (success) {
+            showResultMessage(false);
+            reloadTable();
+            location.reload()
+          }
+        })
       },
       onCancel() {
         console.log('Нет');
@@ -164,7 +179,7 @@ export default function Admin() {
                   setClickEditBtn(true)
                 })
               } else if (key === '2') {
-                
+                showConfirm(_.key)
               }
             }
           }}
@@ -223,11 +238,15 @@ export default function Admin() {
         rowClassName={() => "rowClassName1"}
         pagination={false}
         columns={columns} 
-        dataSource={tableItems} 
+        dataSource={tableData} 
         onChange={onChangeTable}
       />
       <AddManagerDrawer open={isClickAddBtn} onClose={() => setClickAddBtn(false)} />
-      <EditManagerDrawer open={isClickEditBtn} onClose={()=> setClickEditBtn(false)} initFormData={editFormData} />
+      <EditManagerDrawer 
+        open={isClickEditBtn} 
+        onClose={()=> setClickEditBtn(false)} 
+        initFormData={editFormData}
+      />
     </>
   )
 }

@@ -36,9 +36,11 @@ const EditManagerDrawer = (props) => {
   }, [open]);
 
   const onEditManager = (values) => {
-    dispatch(crud.update('admin', initFormData._id, values))
-    onClose(false);
-    success()
+    dispatch(crud.update('admin', initFormData._id, values)).then(() => {
+      onClose(false);
+      success()
+      location.reload()
+    })
   }
 
   return (

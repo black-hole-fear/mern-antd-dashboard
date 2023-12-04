@@ -71,6 +71,10 @@ export const crud = {
         keyState: "all_list",
         payload: data.result
       });
+
+      return new Promise((resolve) => {
+        resolve(data.result)
+      });
     } else {
       dispatch({
         type: actionTypes.REQUEST_FAILED,
@@ -186,6 +190,10 @@ export const crud = {
         keyState: "delete",
         payload: data.result
       });
+
+      return new Promise((resolve) => {
+        resolve(true);
+      })
     } else {
       dispatch({
         type: actionTypes.REQUEST_FAILED,
